@@ -1,0 +1,35 @@
+<div>
+  <div id="header">
+    <p>QUESTA SEMPLICE APPLICAZIONE DETERMINA CHI SARA' LA PERSONA DESTINATA A FARE UN DETERMINATO SERVIZIO SECONDO IL CALCOLO DI UN NUMERO CAUSALE.  </p>
+  </div>
+
+  <div id="body">
+
+    <div style="display:flex;">
+      <div>
+        <p>Scegli la persona prescelta e verifica cosa le riserva la sorte</p>
+        <select [(ngModel)]="selectedPerson" (change)="getClickedPerson()" name="first">
+          <option *ngFor="let person of people">{{person.name}}</option>
+        </select>
+      </div>
+      
+      <span style="width: 20px; "></span>
+
+      <div>
+        <p>Scegli un numero causale. Più è alto, e minore è la possibilità che l'utente sia estratto</p>
+        <select [(ngModel)]="selectedNumber" (change)="getClickedNumber()" name="first">
+          <option *ngFor="let number of numbers">{{number}}</option>
+        </select>
+      </div>
+    </div>
+
+    <div style="height:100px;"></div>
+    
+    <p>ESEGUI L'ALGORITMO FINO A QUANDO NON VERRA' ESTRATTO A SORTE IL FORTUNATO VINCITORE</p>
+    <button (click)="roulette()">ROULETTE</button>
+
+    <div #choosenPersonDialog *ngIf="choosenPerson != null">
+      <app-dialog [style.visibility]="(choosenPerson.hasPersonBeenChoosen) ? 'visible' : 'hidden'" [choosenPerson]="choosenPerson"></app-dialog>
+    </div>
+  </div>
+</div>
